@@ -33,7 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 <!-- ./wrapper -->
 
-<!-- REQUIRED SCRIPTS -->
+<!-- REQUdaIRED SCRIPTS -->
 
 <!-- jQuery -->
 <script src="AdminLTE/jquery/jquery.min.js"></script>

@@ -29,7 +29,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <button class="btn btn-primary" style="float: left;">Add</button>
+          <a href="{{ url('categories/create') }}" class="btn btn-primary float-right m-2">Add</a>
         </div>
         <div class="col-md-12">
           <table class="table">
