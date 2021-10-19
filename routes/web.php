@@ -22,14 +22,18 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/admin', function () {
-    return view('layouts.admin');
-});
 
-Route::prefix('/categories')->group(function () {
+
+Route::prefix('categories')->name('categories.')->group(function () {
 
     Route::get(
         '/create',
         [CategoryController::class, 'create']
-    );
+    )->name('create');
+
+    Route::get(
+        '/index',
+        [CategoryController::class, 'index']
+    )->name('index');
 });
+
