@@ -24,3 +24,18 @@ Route::get('/home', function () {
 Route::get('/admin', function () {
     return view('admin');
 });
+
+Route::get('/add', function () {
+    return view('admin');
+});
+
+Route::prefix('/categories')->group(function () {
+
+    Route::get(
+        '/create',
+        [
+            'as' => 'categories.create',
+            'uses' => 'CatarogyController@create'
+        ]
+    );
+});
