@@ -23,7 +23,7 @@ Route::get('/home', function () {
 });
 
 Route::get('/admin', function () {
-    return view('admin');
+    return view('layouts.admin');
 });
 
 Route::prefix('/categories')->group(function () {
