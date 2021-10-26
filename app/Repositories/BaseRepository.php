@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 
-use App\Repositories\Interfaces\IBaseRepository;
+use App\Repositories\IBaseRepository;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -11,23 +11,24 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Repositories
  */
-class BaseRepository implements IBaseRepository {
-
+abstract class BaseRepository implements IBaseRepository {
 
     /**
-     * @var Model
+     * @var $model
      */
     protected $model;
 
     public function __construct(Model $model)
     {
-       $this->$model = $model; 
+       $this->model = $model; 
     }
 
 
-
+    /**
+     * get all records in table
+     */
     public function getAll() {
-        //Access database and get all elements
+        return $this->model::all();
     }
 
 
@@ -35,17 +36,21 @@ class BaseRepository implements IBaseRepository {
      * @param $id
      * return model
      */
-    public function getElementByID(int $id)
+    public function getByID(int $id)
     {
-        return $this->model->where('id', $id)->first();
+        return $this->model::Where('id',$id)->first();
     }
 
     /**
      * @param $id
+     * return void
      */
-    public function deleteElementByID(int $id)
+    public function delete(int $id)
     {
-        //Delete element by ID
+        $this->model::findId($id)->delete();
     }
+
+
+    abstract public function create(Model $model);
 
 }

@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('address');
-            $table->double('total');
+            //$table->double('total');
             $table->timestamps();
         });
     }

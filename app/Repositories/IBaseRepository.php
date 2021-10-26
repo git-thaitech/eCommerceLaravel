@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Repositories\Interfaces;
+namespace App\Repositories;
 
-interface IBaseRepository {
+use Illuminate\Database\Eloquent\Model;
+
+interface IBaseRepository
+{
     public function getAll();
-    public function getElementByID(int $id);
-    public function deleteElementByID(int $id);
+    public function getByID(int $id);
+    public function delete(int $id);
+    public function create(Model $model);
 }

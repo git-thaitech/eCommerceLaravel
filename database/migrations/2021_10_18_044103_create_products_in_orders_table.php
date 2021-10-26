@@ -18,7 +18,7 @@ class CreateProductsInOrdersTable extends Migration
             $table->foreignId('product_id');
             $table->foreignId('order_id');
             $table->integer('quantity');
-            $table->double('price');
+            $table->double('price');//double float
             $table->timestamps();
         });
     }

@@ -14,24 +14,36 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $productNum = 10;
-        $this->addSampleProducts($productNum);
-        $this->addSampleUsers(10);
+        $productNum = 20;
+        $numberOfCategories=10;
+        $numberOfUsers = 10;
+        $this->addSampleProducts($productNum, $numberOfCategories);
+        $this->addSampleUsers($numberOfUsers);
         $this->addSampleProductImages($productNum);
+        $this->addSampleOrders(20,$numberOfUsers);
+        $this->addSampleCategories($numberOfCategories);
+        $this->addSampleProductsInOrders(20, $productNum);
     }
 
     /**
-     * 
+     * Create a sample list of categories
+     * @param $numberOfCategories
      */
-    public function addSampleCategories($num1 = 0, $num2 = 0, $num3 = 0)
+    public function addSampleCategories($numberOfCategories)
     {
-        
+        foreach(range(1, $numberOfCategories) as $index) 
+        {
+            DB::table('categories')->insert([
+                'name' => 'Category '.$index
+            ]);
+        }
     }
 
     /**
-     * 
+     * Create a sample list of products
+     * @param $numberOfProducts
      */
-    public function addSampleProducts(int $numberOfProducts)
+    public function addSampleProducts(int $numberOfProducts, int $numberOfCategories)
     {
         for ($i = 1; $i <= $numberOfProducts; $i++) {
             DB::table('products')->insert(
@@ -39,7 +51,8 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Product ' . $i,
                     'quantity' => random_int(5, 20),
                     'price' => rand(150, 1000) / 10,
-                    'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+                    'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    'category_id' => random_int(1,$numberOfCategories)
                 ]
             );
         }
@@ -56,8 +69,8 @@ class DatabaseSeeder extends Seeder
         $domainEmail = array('@gmail.com', '@yahoo.com', '@icloud.com');
         for ($i = 1; $i <= $numberOfUsers; $i++) {
 
-            $k = $i % 3;
-            if ($i % 3 == 0) {
+            $k = random_int(0,2);
+            if ($i % 4 == 0) {
                 DB::table('users')->insert([
                     'email' => 'admin' . $admin . $domainEmail[$k],
                     'name' => 'Admin ' . $admin,
@@ -77,8 +90,19 @@ class DatabaseSeeder extends Seeder
         }
     }
 
-    public function addSampleOrders()
+    /**
+     * Create a sample list of orders
+     * @param $numberOfUsers - to add user_id as a foreign key of order table
+     * @param $numberOfOrders
+     */
+    public function addSampleOrders($numberOfOrders, $numberOfUsers)
     {
+        foreach( range(1, $numberOfOrders) as $index) {
+            DB::table('orders') -> insert([
+                'user_id' => random_int(1,$numberOfUsers),
+                'address' => 'Address '.$index
+            ]);
+        }
     }
 
     /**
@@ -86,8 +110,22 @@ class DatabaseSeeder extends Seeder
      * Products will be added randomly to orders
      * @param $numberOfOrders, $numberOfProducts
      */
-    public function addSampleProductsInOrders($numberOfOrders, $numberOfProducts)
+    public function addSampleProductsInOrders($numberOfOrders, int $numberOfProducts)
     {
+        foreach(range(1, $numberOfOrders) as $orderIndex) {
+            $numberOfProductsInAOrder = random_int(1, 4);
+            
+            //Add a list of products to an order based on a random number of products
+            foreach(range(1, $numberOfProductsInAOrder) as $index) {
+                DB::table('products_in_orders')->insert([
+                    'order_id' => $orderIndex,
+                    'product_id' => $numberOfProducts/$index,
+                    'quantity' => random_int(1,5),
+                    'price' => rand(150, 1000) / 10
+                ]);
+            }
+
+        }
     }
 
 
