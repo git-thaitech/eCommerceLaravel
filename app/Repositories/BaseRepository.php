@@ -16,7 +16,7 @@ abstract class BaseRepository implements IBaseRepository {
     /**
      * @var $model
      */
-    protected $model;
+    protected Model $model;
 
     public function __construct(Model $model)
     {

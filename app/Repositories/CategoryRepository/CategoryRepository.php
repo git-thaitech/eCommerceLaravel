@@ -9,11 +9,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class CategoryRepository extends BaseRepository implements ICategoryRepository {
     
- 
+    public function __construct(Categories $model) {
+        parent::__construct($model);
+    }
 
-    public function updateByID($id, Categories $category)
+    public function updateByID($id, Categories $newCategory)
     {
-        //Update a category by ID and Category
+        $category = Categories::find($id);
+
+        $category->name = $newCategory->name;
+
+        $category->save();
     }
 
     public function create(Model $model) {
