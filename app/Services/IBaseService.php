@@ -10,4 +10,5 @@ interface IBaseService
     public function getByID($id);
     public function delete($id);
     public function create(Request $request);
+    public function search(Request $request, $columnName, $key);
 }

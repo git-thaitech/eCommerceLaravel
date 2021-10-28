@@ -20,17 +20,24 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get(
         '/',
         [HomeController::class, 'adminHome']
-    )->name('home');
+    )->name('home')/**->middleware(['auth'])*/;
+
+    /** Login route*/
+        Route::get(
+            '/login',
+            [HomeController::class, 'adminLogin']
+        )->name('login');
+
+        Route::post(
+            '/login',
+            [HomeController::class, 'adminLogin']
+        )->name('login');
+    /** Login route --END*/
 
     Route::get(
-        '/login',
-        [HomeController::class, 'adminLogin']
-    )->name('create');
-
-    Route::get(
-        '/register',
-        [HomeController::class, 'adminRegister']
-    )->name('register');
+        '/forgot',
+        [HomeController::class, 'adminForgot']
+    )->name('forgot');
 });
 
 
@@ -39,13 +46,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::prefix('categories')->name('categories.')->group(function () {
 
     Route::get(
+        '/',
+        [CategoryController::class, 'index']
+    )->name('index');
+
+    Route::get(
         '/create',
         [CategoryController::class, 'create']
     )->name('create');
 
-    Route::get(
-        '/',
-        [CategoryController::class, 'index']
-    )->name('index');
+    Route::post(
+        '/create',
+        [CategoryController::class, 'create']
+    )->name('create');
 });
-

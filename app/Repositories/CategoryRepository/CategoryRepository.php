@@ -24,8 +24,8 @@ class CategoryRepository extends BaseRepository implements ICategoryRepository {
         return $model;
     }
 
-    public function create(array $attributes) {
-    
+    public function create($attributes) {
+        //dd($attributes);
         $this->model->create($attributes);
     }
 

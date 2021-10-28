@@ -20,14 +20,23 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="" method="POST">
+                        <form action="{{ route('categories.create') }}" method="POST">
+                            @csrf
                             <div class="mb-3">
                                 <label for="newCategory">Categories's name</label>
-                                <input type="text" class="form-control" id="newCategory" name="name" placeholder="Enter category name">
+                                <input type="text" class="form-control" id="newCategory" name="name"
+                                    placeholder="Enter category name">
                                 <div class="form-text">
                                     Choose a unique name. Maximum is 100 characters.
                                 </div>
                             </div>
+                            @if (Session::has('success'))
+                                <div class="alert alert-success">
+                                    <ul>
+                                        <li>{{ Session::get('success') }}</li>
+                                    </ul>
+                                </div>
+                            @endif
                             <br>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
