@@ -1,11 +1,11 @@
 <?php
-namespace App\Services;
+namespace App\Services\CategoryService;
 
-use App\Models\Categories;
-use App\Repositories\CategoryRepository;
+use App\Repositories\CategoryRepository\CategoryRepository;
+use App\Services\BaseService;
 use Illuminate\Http\Request;
 
-class Category extends BaseService implements ICategoryService {
+class CategoryService extends BaseService implements ICategoryService {
 
     private CategoryRepository $categoryRepository;
 
@@ -14,6 +14,9 @@ class Category extends BaseService implements ICategoryService {
     }
 
 
+    /**
+     * @inheriate from BaseService
+     */
     public function create(Request $request) {
         // $category = new Categories();
 

@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     //Admin
     public function adminHome() {
-        return view('category.index');
+        return view('Admin.admin-home');
     }
 
     public function adminLogin() {

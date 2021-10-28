@@ -1,5 +1,7 @@
 <?php
-namespace App\Services;
+namespace App\Services\CategoryService;
 
-interface ICategoryService {
+use App\Services\IBaseService;
+
+interface ICategoryService extends IBaseService{
 }

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('Admin.layouts.admin')
 
 @section('title')
     <title>Admin Home</title>

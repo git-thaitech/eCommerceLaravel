@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Repositories\IBaseRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class BaseRepository
@@ -24,9 +25,10 @@ abstract class BaseRepository implements IBaseRepository {
 
 
     /**
-     * get all records in table
+     * Get all records
+     * @return Collection
      */
-    public function getAll() {
+    public function getAll():Collection {
         return $this->model::all();
     }
 
@@ -40,9 +42,10 @@ abstract class BaseRepository implements IBaseRepository {
         return $this->model::Where('id',$id)->first();
     }
 
+    
     /**
      * @param $id
-     * return void
+     * @return void
      */
     public function delete(int $id)
     {

@@ -14,8 +14,8 @@
 <!-- WRAPPER -->
   <div class="wrapper">
 
-  @include('partials.header');
-  @include('partials.left-sidebar')
+  @include('Admin.partials.header');
+  @include('Admin.partials.left-sidebar')
 
 
   <!-- Content Wrapper. Contains page content -->
@@ -23,8 +23,8 @@
   <!-- /.content-wrapper -->
 
 
-  @include('partials.right-control-sidebar')
-  @include('partials.footer')
+  @include('Admin.partials.right-control-sidebar')
+  @include('Admin.partials.footer')
 </div>
 <!-- ./WRAPPER -->
 

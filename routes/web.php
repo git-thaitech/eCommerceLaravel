@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('admin')->name('admin')->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get(
         '/',
@@ -36,7 +36,7 @@ Route::prefix('admin')->name('admin')->group(function () {
 
 
 
-Route::prefix('categories')->name('categories')->group(function () {
+Route::prefix('categories')->name('categories.')->group(function () {
 
     Route::get(
         '/create',
@@ -47,10 +47,5 @@ Route::prefix('categories')->name('categories')->group(function () {
         '/',
         [CategoryController::class, 'index']
     )->name('index');
-});
-
-
-Route::get('/home', function () {
-    return view('home');
 });
 
