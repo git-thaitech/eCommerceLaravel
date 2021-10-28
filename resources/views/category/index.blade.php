@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-<title>Home</title>
+<title>Categories Index</title>
 @endsection
 
 @section('content')

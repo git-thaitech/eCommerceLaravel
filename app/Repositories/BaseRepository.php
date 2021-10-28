@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-
 use App\Repositories\IBaseRepository;
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,9 +33,9 @@ abstract class BaseRepository implements IBaseRepository {
 
     /**
      * @param $id
-     * return model
+     * @return Model
      */
-    public function getByID(int $id)
+    public function getByID(int $id): ?Model
     {
         return $this->model::Where('id',$id)->first();
     }
@@ -51,6 +50,6 @@ abstract class BaseRepository implements IBaseRepository {
     }
 
 
-    abstract public function create(Model $model);
+    abstract public function create(array $attribute);
 
 }

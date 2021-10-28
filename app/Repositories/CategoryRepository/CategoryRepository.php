@@ -4,6 +4,7 @@ namespace App\Repositories;
 use App\Models\Categories;
 use App\Repositories\BaseRepository;
 use App\Repositories\Interfaces\ICategoryRepository;
+use Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -13,17 +14,31 @@ class CategoryRepository extends BaseRepository implements ICategoryRepository {
         parent::__construct($model);
     }
 
-    public function updateByID($id, Categories $newCategory)
+    public function updateByID($id, array $attributes): ?Model
     {
-        $category = Categories::find($id);
+        // $category = Categories::find($id);
 
-        $category->name = $newCategory->name;
+        // $category->name = $newCategory->name;
 
-        $category->save();
+        // $category->save();
+        $model = $this->getByID($id);
+        if ($model) {
+            $model->update($attributes);
+            // $model = $model->load($relations);
+        }
+        return $model;
+
+
+        // $model = $this->getByID($id);
+        // if(!$model) {
+
+        // }
+        // $model->update($attribute);
     }
 
-    public function create(Model $model) {
-        $model->save();
+    public function create(array $attributes) {
+    
+        $this->model->create($attributes);
     }
 
 }

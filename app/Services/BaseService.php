@@ -8,7 +8,7 @@ abstract class BaseService implements IBaseService
 {
     protected IBaseRepository $repository;
 
-    public function __contruct(IBaseRepository $repository) {
+    public function __construct(IBaseRepository $repository) {
         $this->repository = $repository;
     }
 
@@ -16,7 +16,7 @@ abstract class BaseService implements IBaseService
     {
         return $this->repository->getAll();
     }
-    
+
     public function getByID($id)
     {
         return $this->repository->getByID($id);

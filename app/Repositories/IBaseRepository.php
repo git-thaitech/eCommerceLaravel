@@ -9,5 +9,5 @@ interface IBaseRepository
     public function getAll();
     public function getByID(int $id);
     public function delete(int $id);
-    public function create(Model $model);
+    public function create(array $attribute);
 }

@@ -9,11 +9,18 @@ class Category extends BaseService implements ICategoryService {
 
     private CategoryRepository $categoryRepository;
 
+    public function __construct(CategoryRepository $categoryRepository) {
+        parent::__construct($categoryRepository);
+    }
+
+
     public function create(Request $request) {
-        $category = new Categories();
+        // $category = new Categories();
 
-        $category->name = $request->name;
+        // $category->name = $request->name;
 
-        $this->categoryRepository->create($category);
+        // $this->categoryRepository->model=$category;
+
+        $this->categoryRepository->updateByID($request->id,['name' => $request->name]);
     }
 }
